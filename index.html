@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello World!</title>
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- Import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>
+
+  <body>
+    <!-- The wrapper and content divs set margins and positioning -->
+    <div class="wrapper">
+      <div class="content" role="main">
+        <!-- This is the start of content for our page -->
+        <h1 class="title">Memory game</h1>
+
+        <p>
+          Welcome to the Memory Game! Repeat back the pattern by pressing the
+          buttons below!
+        </p>
+
+        <button id="startBtn" onclick="startGame()">Start</button>
+
+        <button id="stopBtn" class="hidden" onclick="stopGame()">Stop</button>
+
+        <div id="gameButtonArea">
+          <button
+            id="button1"
+            onclick="guess(1)"
+            onmousedown="startTone(1)"
+            onmouseup="stopTone()"
+          ></button>
+          <button
+            id="button2"
+            onclick="guess(2)"
+            onmousedown="startTone(2)"
+            onmouseup="stopTone()"
+          ></button>
+          <button
+            id="button3"
+            onclick="guess(3)"
+            onmousedown="startTone(3)"
+            onmouseup="stopTone()"
+          ></button>
+          <button
+            id="button4"
+            onclick="guess(4)"
+            onmousedown="startTone(4)"
+            onmouseup="stopTone()"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
