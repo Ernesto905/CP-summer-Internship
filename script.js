@@ -5,11 +5,16 @@ const nextClueWaitTime = 1000; //how long to wait before starting playback of th
 
 //Global Variables
 var pattern = [2, 2, 4, 3, 2, 1, 2, 4];
+var patternDouble = [2, 5, 8, 7, 2, 6, 1, 3, 3, 5, 4, 4, 4, 8, 7, 6];
 var progress = 0;
 var gamePlaying = false;
 var tonePlaying = false;
 var volume = 0.5; //must be between 0.0 and 1.0
 var guessCounter = 0;
+var currentPattern = [];
+
+//toggle challenges
+var doubleIt = false;
 
 function startGame() {
   //initialize game variables
@@ -18,7 +23,15 @@ function startGame() {
   // swap the Start and Stop buttons
   document.getElementById("startBtn").classList.add("hidden");
   document.getElementById("stopBtn").classList.remove("hidden");
+  document.getElementById("doubleItButton").classList.add("hidden");
 
+  
+  //determine which pattern to use
+  if (doubleIt)
+    currentPattern = patternDouble;
+  else
+    currentPattern = pattern;
+  
   playClueSequence();
 }
 
@@ -27,6 +40,7 @@ function stopGame() {
   // swap the Start and Stop buttons
   document.getElementById("startBtn").classList.remove("hidden");
   document.getElementById("stopBtn").classList.add("hidden");
+  document.getElementById("doubleItButton").classList.remove("hidden");
 }
 
 //handle game-overs
@@ -47,6 +61,8 @@ function clearButton(btn) {
   document.getElementById("button" + btn).classList.remove("lit");
 }
 
+
+//configure clues
 function playSingleClue(btn) {
   if (gamePlaying) {
     lightButton(btn);
@@ -57,14 +73,17 @@ function playSingleClue(btn) {
 
 function playClueSequence() {
   context.resume();
-
+  
+  
+  
+  
   guessCounter = 0;
   let delay = nextClueWaitTime; //set delay to initial wait time
 
   for (let i = 0; i <= progress; i++) {
     // for each clue that is revealed so far
-    console.log("play single clue: " + pattern[i] + " in " + delay + "ms");
-    setTimeout(playSingleClue, delay, pattern[i]); // set a timeout to play that clue
+    console.log("play single clue: " + currentPattern[i] + " in " + delay + "ms");
+    setTimeout(playSingleClue, delay, currentPattern[i]); // set a timeout to play that clue
     delay += clueHoldTime;
     delay += cluePauseTime;
   }
@@ -77,10 +96,10 @@ function guess(btn) {
     return;
   }
 
-  if (pattern[guessCounter] == btn) {
+  if (currentPattern[guessCounter] == btn) {
     //Guess was correct!
     if (guessCounter == progress) {
-      if (progress == pattern.length - 1) {
+      if (progress == currentPattern.length - 1) {
         //GAME OVER: WIN!
         winGame();
       } else {
@@ -99,12 +118,33 @@ function guess(btn) {
   }
 }
 
+
+//configure optional challenges
+function toggleChallenge(challenge){
+  if (challenge == "doubleItUp") {
+    document.getElementById("button5").classList.toggle("hidden");
+    document.getElementById("button6").classList.toggle("hidden");
+    document.getElementById("button7").classList.toggle("hidden");
+    document.getElementById("button8").classList.toggle("hidden");
+    doubleIt = !doubleIt;
+  }
+    
+  
+  //hides or shows challenge message on the screen
+  document.getElementById(challenge).classList.toggle("hidden");
+}
+
+
 // Sound Synthesis Functions
 const freqMap = {
   1: 261.6,
   2: 329.6,
   3: 392,
   4: 466.2,
+  5: 500,
+  6: 550,
+  7: 600,
+  8: 650
 };
 
 // sound settings for the game butttons

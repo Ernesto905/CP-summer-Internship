@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Hello World!</title>
+    <title>Brain Game!</title>
 
     <!-- Import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
@@ -15,17 +15,18 @@
     <div class="wrapper">
       <div class="content" role="main">
         <!-- This is the start of content for our page -->
-        <h1 class="title">Memory game</h1>
+        <h1 class="title">Welcome to <b>Brain Game!</b><br /></h1>
 
-        <p>
-          Welcome to the Memory Game! Repeat back the pattern by pressing the
-          buttons below!
-        </p>
+        <h2>Please pick from the options <strong>below</strong></h2>
+
+        <p>Bonuses Activated:</p>
+        <p class="hidden" id="doubleItUp">Double it Up!<br /></p>
 
         <button id="startBtn" onclick="startGame()">Start</button>
-
         <button id="stopBtn" class="hidden" onclick="stopGame()">Stop</button>
 
+        
+        <!-- These are the four main game buttons -->
         <div id="gameButtonArea">
           <button
             id="button1"
@@ -51,7 +52,42 @@
             onmousedown="startTone(4)"
             onmouseup="stopTone()"
           ></button>
+          <button
+            id="button5"
+            class="hidden"
+            onclick="guess(5)"
+            onmousedown="startTone(5)"
+            onmouseup="stopTone()"
+          ></button>
+          <button
+            id="button6"
+            class="hidden"
+            onclick="guess(6)"
+            onmousedown="startTone(6)"
+            onmouseup="stopTone()"
+          ></button>
+          <button
+            id="button7"
+            class="hidden"
+            onclick="guess(7)"
+            onmousedown="startTone(7)"
+            onmouseup="stopTone()"
+          ></button>
+          <button
+            id="button8"
+            class="hidden"
+            onclick="guess(8)"
+            onmousedown="startTone(8)"
+            onmouseup="stopTone()"
+          ></button>
         </div>
+        <!-- These are the four extra game buttons -->
+        <div id="bonusButtonsArea">
+          <button id="doubleItButton" onclick="toggleChallenge('doubleItUp')">
+            Double it up!
+          </button>
+        </div>
+        
       </div>
     </div>
   </body>
