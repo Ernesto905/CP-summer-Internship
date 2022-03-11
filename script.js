@@ -1,5 +1,4 @@
 // global constants
-const clueHoldTime = 1000; //how long to hold each clue's light/sound
 const cluePauseTime = 333; //how long to pause in between clues
 const nextClueWaitTime = 1000; //how long to wait before starting playback of the clue sequence
 
@@ -12,26 +11,27 @@ var tonePlaying = false;
 var volume = 0.5; //must be between 0.0 and 1.0
 var guessCounter = 0;
 var currentPattern = [];
+var clueHoldTime = 1000; //how long to hold each clue's light/sound
 
 //toggle challenges
 var doubleIt = false;
+var speedIt = false;
 
 function startGame() {
   //initialize game variables
   progress = 0;
   gamePlaying = true;
+  clueHoldTime = 1000;
   // swap the Start and Stop buttons
   document.getElementById("startBtn").classList.add("hidden");
   document.getElementById("stopBtn").classList.remove("hidden");
   document.getElementById("doubleItButton").classList.add("hidden");
+  document.getElementById("speedItButton").classList.add("hidden");
 
-  
   //determine which pattern to use
-  if (doubleIt)
-    currentPattern = patternDouble;
-  else
-    currentPattern = pattern;
-  
+  if (doubleIt) currentPattern = patternDouble;
+  else currentPattern = pattern;
+
   playClueSequence();
 }
 
@@ -41,6 +41,7 @@ function stopGame() {
   document.getElementById("startBtn").classList.remove("hidden");
   document.getElementById("stopBtn").classList.add("hidden");
   document.getElementById("doubleItButton").classList.remove("hidden");
+  document.getElementById("speedItButton").classList.remove("hidden");
 }
 
 //handle game-overs
@@ -61,7 +62,6 @@ function clearButton(btn) {
   document.getElementById("button" + btn).classList.remove("lit");
 }
 
-
 //configure clues
 function playSingleClue(btn) {
   if (gamePlaying) {
@@ -73,25 +73,25 @@ function playSingleClue(btn) {
 
 function playClueSequence() {
   context.resume();
-  
-  
-  
-  
   guessCounter = 0;
+
   let delay = nextClueWaitTime; //set delay to initial wait time
 
   for (let i = 0; i <= progress; i++) {
     // for each clue that is revealed so far
-    console.log("play single clue: " + currentPattern[i] + " in " + delay + "ms");
     setTimeout(playSingleClue, delay, currentPattern[i]); // set a timeout to play that clue
     delay += clueHoldTime;
     delay += cluePauseTime;
+
+    // speed up the game if the Speed it up challenge is activated
+    if (clueHoldTime > 200 && speedIt) {
+      clueHoldTime -= 50;
+      console.log("current delay is is" + delay);
+    }
   }
 }
 
 function guess(btn) {
-  console.log("user guessed: " + btn);
-
   if (!gamePlaying) {
     return;
   }
@@ -118,9 +118,8 @@ function guess(btn) {
   }
 }
 
-
 //configure optional challenges
-function toggleChallenge(challenge){
+function toggleChallenge(challenge) {
   if (challenge == "doubleItUp") {
     document.getElementById("button5").classList.toggle("hidden");
     document.getElementById("button6").classList.toggle("hidden");
@@ -128,12 +127,13 @@ function toggleChallenge(challenge){
     document.getElementById("button8").classList.toggle("hidden");
     doubleIt = !doubleIt;
   }
-    
-  
+  if (challenge == "speedItUp") {
+    speedIt = !speedIt;
+  }
+
   //hides or shows challenge message on the screen
   document.getElementById(challenge).classList.toggle("hidden");
 }
-
 
 // Sound Synthesis Functions
 const freqMap = {
@@ -144,7 +144,7 @@ const freqMap = {
   5: 500,
   6: 550,
   7: 600,
-  8: 650
+  8: 650,
 };
 
 // sound settings for the game butttons

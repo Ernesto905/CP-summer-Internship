@@ -21,6 +21,7 @@
 
         <p>Bonuses Activated:</p>
         <p class="hidden" id="doubleItUp">Double it Up!<br /></p>
+        <p class="hidden" id="speedItUp">Speed it Up!<br /></p>
 
         <button id="startBtn" onclick="startGame()">Start</button>
         <button id="stopBtn" class="hidden" onclick="stopGame()">Stop</button>
@@ -81,10 +82,13 @@
             onmouseup="stopTone()"
           ></button>
         </div>
-        <!-- These are the four extra game buttons -->
+        <!-- These toggle bonuses to the game -->
         <div id="bonusButtonsArea">
           <button id="doubleItButton" onclick="toggleChallenge('doubleItUp')">
             Double it up!
+          </button>
+          <button id="speedItButton" onclick="toggleChallenge('speedItUp')">
+            Speed it up!
           </button>
         </div>
         
