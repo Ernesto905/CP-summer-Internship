@@ -6,6 +6,7 @@
   justify-content: center;
 }
 
+
 body {
   font-family: helvetica, arial, sans-serif;
   margin: 2em;
@@ -15,6 +16,10 @@ body {
 
 h1 {
   font-family: verdana, arial, sans-serif;
+}
+
+p {
+  margin: 0em;
 }
 
 /* Buttons */
@@ -39,6 +44,19 @@ button {
   background: lightyellow;
 }
 
+#button5 {
+  background: #35e4e0;
+}
+#button6 {
+  background: #ff9393;
+}
+#button7 {
+  background: #ffac48;
+}
+#button8 {
+  background: #939393;
+}
+
 #button1:active,
 #button1.lit {
   background: green;
@@ -59,11 +77,30 @@ button {
   background: yellow;
 }
 
+#button5:active,
+#button5.lit {
+  background: #336e6d;
+}
+#button6:active,
+#button6.lit {
+  background: #844b4b;
+}
+#button7:active,
+#button7.lit {
+  background: #8e6028;
+}
+#button8:active,
+#button8.lit {
+  background: #393939;
+}
+
 #gameButtonArea > button {
   width: 200px;
   height: 200px;
   margin: 2px;
 }
+
+
 
 .hidden {
   display: none;
