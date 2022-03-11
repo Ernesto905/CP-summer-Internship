@@ -2,15 +2,9 @@
 
 **Memory Game** is a Light & Sound Memory game to apply for CodePath's SITE Program. 
 
-<<<<<<< HEAD
-Submitted by: **ErnestoEnriquez**
-
-Time spent: **8** hours spent in total
-=======
 Submitted by: **Ernesto Enriquez**
 
 Time spent: **9** hours spent in total
->>>>>>> glitch
 
 Link to project: 
 https://glitch.com/edit/#!/utopian-dour-lathe
@@ -34,11 +28,7 @@ The following **optional** features are implemented:
 * [X] Any HTML page elements (including game buttons) has been styled differently than in the tutorial
 * [X] Buttons use a pitch (frequency) other than the ones in the tutorial
 * [X] More than 4 functional game buttons
-<<<<<<< HEAD
-* [ ] Playback speeds up on each turn
-=======
 * [X] Playback speeds up on each turn
->>>>>>> glitch
 * [ ] Computer picks a different pattern each time the game is played
 * [ ] Player only loses after 3 mistakes (instead of on the first mistake)
 * [ ] Game button appearance change goes beyond color (e.g. add an image)
@@ -59,11 +49,7 @@ If you recorded multiple GIFs for all the implemented features, you can add them
 
 ## Reflection Questions
 1. If you used any outside resources to help complete your submission (websites, books, people, etc) list them here. 
-<<<<<<< HEAD
-* W3Schools : https://www.w3schools.com/jsref/dom_obj_document.asp
-=======
 * W3Schools for javascript syntax and HTML/CSS concepts : https://www.w3schools.com/jsref/dom_obj_document.asp
->>>>>>> glitch
 * How to position content in CSS: https://www2.cs.sfu.ca/CourseCentral/165/common/study-guide/content/css2-positioning.html
 
 2. What was a challenge you encountered in creating this submission (be specific)? How did you overcome it? (recommended 200 - 400 words) 
@@ -96,8 +82,5 @@ If you recorded multiple GIFs for all the implemented features, you can add them
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
-<<<<<<< HEAD
     limitations under the License.
-=======
-    limitations under the License.
->>>>>>> glitch
+
