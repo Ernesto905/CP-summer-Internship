@@ -3,14 +3,13 @@ const cluePauseTime = 333; //how long to pause in between clues
 const nextClueWaitTime = 1000; //how long to wait before starting playback of the clue sequence
 
 //Global Variables
-var pattern = [2, 2, 4, 3, 2, 1, 2, 4];
-var patternDouble = [2, 5, 8, 7, 2, 6, 1, 3, 3, 5, 4, 4, 4, 8, 7, 6];
+var pattern = [];
 var progress = 0;
 var gamePlaying = false;
 var tonePlaying = false;
 var volume = 0.5; //must be between 0.0 and 1.0
 var guessCounter = 0;
-var currentPattern = [];
+
 var clueHoldTime = 1000; //how long to hold each clue's light/sound
 
 //toggle challenges
@@ -29,10 +28,23 @@ function startGame() {
   document.getElementById("speedItButton").classList.add("hidden");
 
   //determine which pattern to use
-  if (doubleIt) currentPattern = patternDouble;
-  else currentPattern = pattern;
+  pattern = [];
+  createPattern();
 
   playClueSequence();
+}
+
+//Creates a pattern in accordance with the currently toggled challenges.
+function createPattern() {
+  if (!doubleIt) {
+    for (let i = 0; i < 8; i++) {
+      pattern.push(Math.floor(Math.random() * 4 + 1));
+    }
+  } else {
+    for (let i = 0; i < 16; i++) {
+      pattern.push(Math.floor(Math.random() * 8 + 1));
+    }
+  }
 }
 
 function stopGame() {
@@ -79,7 +91,7 @@ function playClueSequence() {
 
   for (let i = 0; i <= progress; i++) {
     // for each clue that is revealed so far
-    setTimeout(playSingleClue, delay, currentPattern[i]); // set a timeout to play that clue
+    setTimeout(playSingleClue, delay, pattern[i]); // set a timeout to play that clue
     delay += clueHoldTime;
     delay += cluePauseTime;
 
@@ -96,10 +108,10 @@ function guess(btn) {
     return;
   }
 
-  if (currentPattern[guessCounter] == btn) {
+  if (pattern[guessCounter] == btn) {
     //Guess was correct!
     if (guessCounter == progress) {
-      if (progress == currentPattern.length - 1) {
+      if (progress == pattern.length - 1) {
         //GAME OVER: WIN!
         winGame();
       } else {
