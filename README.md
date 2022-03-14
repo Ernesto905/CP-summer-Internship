@@ -30,14 +30,14 @@ The following **optional** features are implemented:
 * [X] More than 4 functional game buttons
 * [X] Playback speeds up on each turn
 * [X] Computer picks a different pattern each time the game is played
-* [ ] Player only loses after 3 mistakes (instead of on the first mistake)
-* [ ] Game button appearance change goes beyond color (e.g. add an image)
+* [X] Player only loses after 3 mistakes (instead of on the first mistake)
+* [X] Game button appearance change goes beyond color (e.g. add an image)
 * [ ] Game button sound is more complex than a single tone (e.g. an audio file, a chord, a sequence of multiple tones)
 * [ ] User has a limited amount of time to enter their guess on each turn
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app!
+- [X] Added background animation (floating stars) 
 
 ## Video Walkthrough (GIF)
 
@@ -51,6 +51,8 @@ If you recorded multiple GIFs for all the implemented features, you can add them
 1. If you used any outside resources to help complete your submission (websites, books, people, etc) list them here. 
 * W3Schools for javascript syntax and HTML/CSS concepts : https://www.w3schools.com/jsref/dom_obj_document.asp
 * How to position content in CSS: https://www2.cs.sfu.ca/CourseCentral/165/common/study-guide/content/css2-positioning.html
+* Background animation used: https://www.youtube.com/watch?v=aywzn9cf-_U
+* How to add white spaces in html: https://blog.hubspot.com/website/html-space
 
 2. What was a challenge you encountered in creating this submission (be specific)? How did you overcome it? (recommended 200 - 400 words) 
 [YOUR ANSWER HERE]
