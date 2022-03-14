@@ -9,7 +9,7 @@ var gamePlaying = false;
 var tonePlaying = false;
 var volume = 0.5; //must be between 0.0 and 1.0
 var guessCounter = 0;
-
+var mistakeCounter = 0;
 var clueHoldTime = 1000; //how long to hold each clue's light/sound
 
 //toggle challenges
@@ -21,11 +21,15 @@ function startGame() {
   progress = 0;
   gamePlaying = true;
   clueHoldTime = 1000;
-  // swap the Start and Stop buttons
+  mistakeCounter = 0;
+  // Hide or Show buttons/texts for the game
   document.getElementById("startBtn").classList.add("hidden");
   document.getElementById("stopBtn").classList.remove("hidden");
   document.getElementById("doubleItButton").classList.add("hidden");
   document.getElementById("speedItButton").classList.add("hidden");
+  document.getElementById("livesLeft").classList.remove("hidden");
+  
+  
 
   //determine which pattern to use
   pattern = [];
@@ -49,11 +53,14 @@ function createPattern() {
 
 function stopGame() {
   gamePlaying = false;
-  // swap the Start and Stop buttons
+  // Hide or show buttons/texts for the main menu
   document.getElementById("startBtn").classList.remove("hidden");
   document.getElementById("stopBtn").classList.add("hidden");
   document.getElementById("doubleItButton").classList.remove("hidden");
   document.getElementById("speedItButton").classList.remove("hidden");
+  document.getElementById("livesLeft").classList.add("hidden");
+  document.getElementById("Life1").style.display = "inline";
+  document.getElementById("Life2").style.display = "inline";
 }
 
 //handle game-overs
@@ -125,8 +132,13 @@ function guess(btn) {
     }
   } else {
     //Guess was incorrect
-    //GAME OVER: LOSE!
-    loseGame();
+    if (mistakeCounter != 2) {
+      mistakeCounter++;
+      var currentLives = "Life" + mistakeCounter;
+      
+      document.getElementById(currentLives).style.display = "none";
+      
+    } else loseGame();
   }
 }
 
