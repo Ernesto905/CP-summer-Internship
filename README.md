@@ -4,7 +4,7 @@
 
 Submitted by: **Ernesto Enriquez**
 
-Time spent: **12** hours spent in total
+Time spent: **13** hours spent in total
 
 Link to project: 
 Real time updated code will be linked once the project is turned in.
@@ -32,7 +32,7 @@ The following **optional** features are implemented:
 * [X] Computer picks a different pattern each time the game is played
 * [X] Player only loses after 3 mistakes (instead of on the first mistake)
 * [X] Game button appearance change goes beyond color (e.g. add an image)
-* [ ] Game button sound is more complex than a single tone (e.g. an audio file, a chord, a sequence of multiple tones)
+* [X] Game button sound is more complex than a single tone (e.g. an audio file, a chord, a sequence of multiple tones)
 * [ ] User has a limited amount of time to enter their guess on each turn
 
 The following **additional** features are implemented:
