@@ -1,3 +1,58 @@
+//definitions
+let audio1 = new Audio(); //create new instance of built in JS audio class
+let audio2 = new Audio();
+let audio3 = new Audio();
+let audio4 = new Audio();
+let audio5 = new Audio();
+let audio6 = new Audio();
+let audio7 = new Audio();
+let audio8 = new Audio();
+let audio9 = new Audio();
+
+audio1.src =
+  "https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/Sound1.mp3?v=1647354651420";
+audio2.src =
+  "https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/Sound2.mp3?v=1647354661325";
+audio3.src =
+  "https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/Sound3.mp3?v=1647354664804";
+audio4.src =
+  "https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/Sound4.mp3?v=1647623084279";
+audio5.src =
+  "https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/Sound5.mp3?v=1647623084350";
+audio6.src =
+  "https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/Sound6.mp3?v=1647623084642";
+audio7.src =
+  "https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/Sound7.mp3?v=1647623084370";
+audio8.src =
+  "https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/Sound8.mp3?v=1647623084464";
+
+const audioMap = {
+  1: audio1,
+  2: audio2,
+  3: audio3,
+  4: audio4,
+  5: audio5,
+  6: audio6,
+  7: audio7,
+  8: audio8,
+};
+
+function testing(btn) {
+  var buttonToPlay = audioMap[btn];
+  buttonToPlay.play();
+  console.log(
+    "currently playign button" + btn + "the audio location is " + buttonToPlay
+  );
+}
+
+function testing2(btn) {
+  var buttonToPause = audioMap[btn];
+
+  buttonToPause.pause();
+  buttonToPause.currentTime = 0;
+}
+
+//********************************************************** */
 // global constants
 const cluePauseTime = 333; //how long to pause in between clues
 const nextClueWaitTime = 1000; //how long to wait before starting playback of the clue sequence
@@ -28,8 +83,6 @@ function startGame() {
   document.getElementById("doubleItButton").classList.add("hidden");
   document.getElementById("speedItButton").classList.add("hidden");
   document.getElementById("livesLeft").classList.remove("hidden");
-  
-  
 
   //determine which pattern to use
   pattern = [];
@@ -91,7 +144,6 @@ function playSingleClue(btn) {
 }
 
 function playClueSequence() {
-  context.resume();
   guessCounter = 0;
 
   let delay = nextClueWaitTime; //set delay to initial wait time
@@ -135,9 +187,8 @@ function guess(btn) {
     if (mistakeCounter != 2) {
       mistakeCounter++;
       var currentLives = "Life" + mistakeCounter;
-      
+
       document.getElementById(currentLives).style.display = "none";
-      
     } else loseGame();
   }
 }
@@ -159,50 +210,28 @@ function toggleChallenge(challenge) {
   document.getElementById(challenge).classList.toggle("hidden");
 }
 
-// Sound Synthesis Functions
-const freqMap = {
-  1: 261.6,
-  2: 329.6,
-  3: 392,
-  4: 466.2,
-  5: 500,
-  6: 550,
-  7: 600,
-  8: 650,
-};
-
 // sound settings for the game butttons
 function playTone(btn, len) {
-  o.frequency.value = freqMap[btn];
-  g.gain.setTargetAtTime(volume, context.currentTime + 0.05, 0.025);
-  context.resume();
   tonePlaying = true;
+  testing(btn);
+
   setTimeout(function () {
-    stopTone();
+    testing2(btn);
   }, len);
 }
 
 function startTone(btn) {
   if (!tonePlaying) {
-    context.resume();
-    o.frequency.value = freqMap[btn];
-    g.gain.setTargetAtTime(volume, context.currentTime + 0.05, 0.025);
-    context.resume();
+    // context.resume();
+    // o.frequency.value = freqMap[btn];
+    // g.gain.setTargetAtTime(volume, context.currentTime + 0.05, 0.025);
+    // context.resume();
     tonePlaying = true;
+    testing(btn);
   }
 }
-function stopTone() {
-  g.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
+function stopTone(btn) {
+  //   g.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
   tonePlaying = false;
+  testing2(btn);
 }
-
-// Page Initialization
-// Init Sound Synthesizer
-var AudioContext = window.AudioContext || window.webkitAudioContext;
-var context = new AudioContext();
-var o = context.createOscillator();
-var g = context.createGain();
-g.connect(context.destination);
-g.gain.setValueAtTime(0, context.currentTime);
-o.connect(g);
-o.start(0);
