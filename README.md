@@ -7,7 +7,7 @@ Submitted by: **Ernesto Enriquez**
 Time spent: **12** hours spent in total
 
 Link to project: 
-https://glitch.com/edit/#!/utopian-dour-lathe
+Real time updated code will be linked once the project is turned in.
 Live site: 
 https://utopian-dour-lathe.glitch.me
 
