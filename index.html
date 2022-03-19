@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Brain Game!</title>
+    <title>Space Brain!</title>
 
     <!-- Import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
@@ -27,8 +27,12 @@
         <h2>Please pick from the options <strong>below</strong></h2>
 
         <p>Bonuses Activated:</p>
-        <p class="hidden" id="doubleItUp">Double it Up!<br /></p>
-        <p class="hidden" id="speedItUp">Speed it Up!<br /></p>
+        <p class="hidden" id="doubleItUp">Double it up!<br /></p>
+        <p class="hidden" id="speedItUp">Gotta go fast!<br /></p>
+        <p class="hidden" id="timeItUp">Running out of time!</p>
+
+
+        
 
         <button id="startBtn" onclick="startGame()">Start</button>
         <button id="stopBtn" class="hidden" onclick="stopGame()">Stop</button>
@@ -40,12 +44,14 @@
           <p id="Life3">X</p>
         </div>
 
+        <div class ="hidden" id="timer"></div>
+
         <!-- These are the four main game buttons -->
         <div id="gameButtonArea">
           <button
             id="button1"
             onclick="guess(1)"
-            onmousedown="testing(1)"
+            onmousedown="startTone(1)"
             onmouseup="stopTone(1)"
           >
           </button>
@@ -99,12 +105,17 @@
         <!-- These toggle bonuses to the game -->
         <div id="bonusButtonsArea">
           <button id="doubleItButton" onclick="toggleChallenge('doubleItUp')">
-            Double it up!
+            Double it!
           </button>
           <button id="speedItButton" onclick="toggleChallenge('speedItUp')">
-            Speed it up!
+            Speed it!
+          </button>
+          <button id="timeItButton" onclick="toggleChallenge('timeItUp')">
+            Time it!
           </button>
         </div>
+        
+        
       </div>
     </div>
   </body>

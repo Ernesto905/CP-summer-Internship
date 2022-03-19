@@ -1,5 +1,29 @@
-//definitions
-let audio1 = new Audio(); //create new instance of built in JS audio class
+// global constants
+const cluePauseTime = 333; //how long to pause in between clues
+const nextClueWaitTime = 1000; //how long to wait before starting playback of the clue sequence
+const countDown = document.getElementById("timer");
+
+
+//Global Variables
+var pattern = [];
+var progress = 0;
+var gamePlaying = false;
+var tonePlaying = false;
+var volume = 0.5; //must be between 0.0 and 1.0
+var guessCounter = 0;
+var mistakeCounter = 0;
+var clueHoldTime = 1000; //how long to hold each clue's light/sound
+var time = 3;
+var test = false;
+
+//toggle challenges
+var doubleIt = false;
+var speedIt = false;
+var timeIt = false;
+
+
+//create instances of JS inbuilt Audio class
+let audio1 = new Audio(); 
 let audio2 = new Audio();
 let audio3 = new Audio();
 let audio4 = new Audio();
@@ -37,40 +61,9 @@ const audioMap = {
   8: audio8,
 };
 
-function testing(btn) {
-  var buttonToPlay = audioMap[btn];
-  buttonToPlay.play();
-  console.log(
-    "currently playign button" + btn + "the audio location is " + buttonToPlay
-  );
-}
 
-function testing2(btn) {
-  var buttonToPause = audioMap[btn];
-
-  buttonToPause.pause();
-  buttonToPause.currentTime = 0;
-}
 
 //********************************************************** */
-// global constants
-const cluePauseTime = 333; //how long to pause in between clues
-const nextClueWaitTime = 1000; //how long to wait before starting playback of the clue sequence
-
-//Global Variables
-var pattern = [];
-var progress = 0;
-var gamePlaying = false;
-var tonePlaying = false;
-var volume = 0.5; //must be between 0.0 and 1.0
-var guessCounter = 0;
-var mistakeCounter = 0;
-var clueHoldTime = 1000; //how long to hold each clue's light/sound
-
-//toggle challenges
-var doubleIt = false;
-var speedIt = false;
-
 function startGame() {
   //initialize game variables
   progress = 0;
@@ -82,11 +75,19 @@ function startGame() {
   document.getElementById("stopBtn").classList.remove("hidden");
   document.getElementById("doubleItButton").classList.add("hidden");
   document.getElementById("speedItButton").classList.add("hidden");
+  document.getElementById("timeItButton").classList.add("hidden");
   document.getElementById("livesLeft").classList.remove("hidden");
 
   //determine which pattern to use
   pattern = [];
   createPattern();
+  
+  
+  if(timeIt){
+    time=3;
+    countDown.innerHTML = `${time}`;
+    document.getElementById("timer").classList.remove("hidden")
+  }
 
   playClueSequence();
 }
@@ -111,9 +112,15 @@ function stopGame() {
   document.getElementById("stopBtn").classList.add("hidden");
   document.getElementById("doubleItButton").classList.remove("hidden");
   document.getElementById("speedItButton").classList.remove("hidden");
+  document.getElementById("timeItButton").classList.remove("hidden");
   document.getElementById("livesLeft").classList.add("hidden");
   document.getElementById("Life1").style.display = "inline";
+  document.getElementById("timer").classList.add("hidden");
   document.getElementById("Life2").style.display = "inline";
+  if(timeIt){
+
+    configureInterval(false);
+  }
 }
 
 //handle game-overs
@@ -148,8 +155,8 @@ function playClueSequence() {
 
   let delay = nextClueWaitTime; //set delay to initial wait time
 
+  // for each clue that is revealed so far
   for (let i = 0; i <= progress; i++) {
-    // for each clue that is revealed so far
     setTimeout(playSingleClue, delay, pattern[i]); // set a timeout to play that clue
     delay += clueHoldTime;
     delay += cluePauseTime;
@@ -157,10 +164,16 @@ function playClueSequence() {
     // speed up the game if the Speed it up challenge is activated
     if (clueHoldTime > 200 && speedIt) {
       clueHoldTime -= 50;
-      console.log("current delay is is" + delay);
     }
   }
+  //wait until clues are played back and then begins countdown 
+  if (timeIt) {
+    time = 3;
+    setTimeout(configureInterval, delay, true);
+  }
 }
+
+
 
 function guess(btn) {
   if (!gamePlaying) {
@@ -169,6 +182,11 @@ function guess(btn) {
 
   if (pattern[guessCounter] == btn) {
     //Guess was correct!
+    if (timeIt) {
+      time = 3;
+      countDown.innerHTML = `${time}`;
+    }
+
     if (guessCounter == progress) {
       if (progress == pattern.length - 1) {
         //GAME OVER: WIN!
@@ -176,7 +194,14 @@ function guess(btn) {
       } else {
         //Pattern correct. Add next segment
         progress++;
+        if (timeIt){
+          configureInterval(false);
+          time = 3;
+          countDown.innerHTML = `${time}`;
+        }
         playClueSequence();
+        
+        
       }
     } else {
       //so far so good... check the next guess
@@ -185,16 +210,60 @@ function guess(btn) {
   } else {
     //Guess was incorrect
     if (mistakeCounter != 2) {
-      mistakeCounter++;
-      var currentLives = "Life" + mistakeCounter;
+      loseALife();
 
-      document.getElementById(currentLives).style.display = "none";
     } else loseGame();
   }
 }
 
+function loseALife() {
+  mistakeCounter++;
+  var currentLives = "Life" + mistakeCounter;
+  document.getElementById(currentLives).style.display = "none";
+}
+
+
+function configureInterval(turnOn) {
+  if (turnOn){
+    myInterval = setInterval(turnOnCountdown, 1000);
+  }
+  else {
+    
+    clearInterval(myInterval);
+  }
+}
+
+//if i hit stop while the timer is going, It continues.
+
+//timer configuration
+function turnOnCountdown() {
+  
+  //creates a timer and updates the html element showing this timer.
+  countDown.innerHTML = `${time}`;
+  time--;
+  
+  //user loses a life and timer is reset
+  if(time == -1) {
+    if (mistakeCounter != 2){
+      time=3;  
+      loseALife();
+    } else {
+      document.getElementById("timer").classList.toggle('hidden');
+      configureInterval(false);
+      if(gamePlaying){
+        loseGame();
+      }
+    }
+  }
+}
+
+
+
 //configure optional challenges
 function toggleChallenge(challenge) {
+  let visual = document.getElementById("timeItUp").className;
+  let counter = document.getElementById("timer").className;
+
   if (challenge == "doubleItUp") {
     document.getElementById("button5").classList.toggle("hidden");
     document.getElementById("button6").classList.toggle("hidden");
@@ -205,33 +274,58 @@ function toggleChallenge(challenge) {
   if (challenge == "speedItUp") {
     speedIt = !speedIt;
   }
+  if (challenge == "timeItUp") {
+    
+    time = 3;
+
+    document.getElementById("timer").classList.toggle("hidden");
+    timeIt = !timeIt
+    
+    
+
+    //Catches an error. Needs refactoring for cleaner logic.
+    if(!timeIt && counter == "hidden" && visual != "hidden"){
+      document.getElementById("timer").classList.add("hidden");
+      configureInterval(false);
+    }
+  }
 
   //hides or shows challenge message on the screen
   document.getElementById(challenge).classList.toggle("hidden");
 }
 
+
 // sound settings for the game butttons
 function playTone(btn, len) {
   tonePlaying = true;
-  testing(btn);
+  startSound(btn);
 
   setTimeout(function () {
-    testing2(btn);
+    stopSound(btn);
   }, len);
+  tonePlaying = false;
 }
 
 function startTone(btn) {
   if (!tonePlaying) {
-    // context.resume();
-    // o.frequency.value = freqMap[btn];
-    // g.gain.setTargetAtTime(volume, context.currentTime + 0.05, 0.025);
-    // context.resume();
     tonePlaying = true;
-    testing(btn);
-  }
+    startSound(btn);
+  } 
+  
 }
 function stopTone(btn) {
-  //   g.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
   tonePlaying = false;
-  testing2(btn);
+  stopSound(btn);
+}
+
+function startSound(btn) {
+  var buttonToPlay = audioMap[btn];
+  buttonToPlay.play();
+}
+
+function stopSound(btn) {
+  var buttonToPause = audioMap[btn];
+
+  buttonToPause.pause();
+  buttonToPause.currentTime = 0;
 }

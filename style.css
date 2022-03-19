@@ -71,39 +71,39 @@ button {
 
 #button1:active,
 #button1.lit {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 #button2:active,
 #button2.lit {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 #button3:active,
 #button3.lit {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 #button4:active,
 #button4.lit {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 #button5:active,
 #button5.lit {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 #button6:active,
 #button6.lit {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 #button7:active,
 #button7.lit {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 #button8:active,
 #button8.lit {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 #gameButtonArea > button {
@@ -114,6 +114,16 @@ button {
 
 #livesLeft > p {
   display: inline;
+}
+
+#timer {
+  position: absolute;
+  font-size: xx-large;
+  top: 20px;
+  right: 40px;
+  color: red;
+  font-weight: bolder;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .hidden {
