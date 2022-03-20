@@ -4,18 +4,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
+   
+} 
 
 html {
   height: 100%;
   overflow: hidden;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  cursor: url("https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/rocket-white.svg?v=1647789575824"), auto;
 }
 
 body {
   font-family: helvetica, arial, sans-serif;
   margin: 2em;
   color: white;
+  
 }
 
 h1 {
@@ -30,6 +33,11 @@ p {
 button {
   padding: 10px;
   border-radius: 15px;
+}
+
+button:hover,
+button:focus {
+  cursor: url("https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/rocket-dark.svg?v=1647789575823"), auto;
 }
 
 #button1 {
