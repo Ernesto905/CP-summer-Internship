@@ -4,7 +4,7 @@
 
 Submitted by: **Ernesto Enriquez**
 
-Time spent: **13** hours spent in total
+Time spent: **15** hours spent in total
 
 Link to project: 
 Real time updated code will be linked once the project is turned in.
@@ -38,6 +38,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [X] Added background animation (floating stars) 
+- [X] Custom cursor replaced original one (dark/white rocket) 
 
 ## Video Walkthrough (GIF)
 
