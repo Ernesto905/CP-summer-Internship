@@ -4,10 +4,10 @@
 
 Submitted by: **Ernesto Enriquez**
 
-Time spent: **15** hours spent in total
+Time spent: **19** hours spent in total
 
 Link to project: 
-Real time updated code will be linked once the project is turned in.
+https://glitch.com/edit/#!/im-pickle-rick <br>
 Live site: 
 https://utopian-dour-lathe.glitch.me
 
@@ -37,16 +37,17 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [X] Added background animation (floating stars) 
+- [X] Added a custom background animation (floating stars) 
 - [X] Custom cursor replaced original one (dark/white rocket) 
+- [X] Custom fonts
+- [X] Custom explanation of each challenge offered through a popup
 
 ## Video Walkthrough (GIF)
 
 If you recorded multiple GIFs for all the implemented features, you can add them here:
-![](gif1-link-here)
-![](gif2-link-here)
-![](gif3-link-here)
-![](gif4-link-here)
+![](http://g.recordit.co/NGeMWM205o.gif)
+![](http://g.recordit.co/BIesVmFFAV.gif)
+
 
 ## Reflection Questions
 1. If you used any outside resources to help complete your submission (websites, books, people, etc) list them here. 
