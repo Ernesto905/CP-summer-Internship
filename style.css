@@ -4,21 +4,29 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-   
-} 
+}
 
 html {
   height: 100%;
   overflow: hidden;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  cursor: url("https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/rocket-white.svg?v=1647789575824"), auto;
+  cursor: url("https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/rocket-white.svg?v=1647789575824"),
+    auto;
 }
 
 body {
   font-family: helvetica, arial, sans-serif;
   margin: 2em;
   color: white;
-  
+}
+.title {
+  font-family: "Genos", sans-serif;
+  font-size: 100px;
+}
+
+.options {
+  font-family: "Press Start 2P", cursive;
+  font-size: 20px;
 }
 
 h1 {
@@ -30,6 +38,7 @@ p {
 }
 
 /* Buttons */
+
 button {
   padding: 10px;
   border-radius: 15px;
@@ -37,7 +46,8 @@ button {
 
 button:hover,
 button:focus {
-  cursor: url("https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/rocket-dark.svg?v=1647789575823"), auto;
+  cursor: url("https://cdn.glitch.global/b151c312-91ad-48ac-acd2-886670b98ba1/rocket-dark.svg?v=1647789575823"),
+    auto;
 }
 
 #button1 {
@@ -126,16 +136,88 @@ button:focus {
 
 #timer {
   position: absolute;
-  font-size: xx-large;
+  font-size: 100px;
   top: 20px;
   right: 40px;
   color: red;
   font-weight: bolder;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .hidden {
   display: none;
+}
+
+/* Popup container */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: "Bungee Outline", cursive;
+}
+
+.popuptext {
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#challengeMessages {
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
 }
 
 /* The following is not my code. These are the moving star animations in the background.

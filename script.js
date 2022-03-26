@@ -3,10 +3,6 @@ const cluePauseTime = 333; //how long to pause in between clues
 const nextClueWaitTime = 1000; //how long to wait before starting playback of the clue sequence
 const countDown = document.getElementById("timer");
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/glitch
 //Global Variables
 var pattern = [];
 var progress = 0;
@@ -24,14 +20,8 @@ var doubleIt = false;
 var speedIt = false;
 var timeIt = false;
 
-<<<<<<< HEAD
-
-//create instances of JS inbuilt Audio class
-let audio1 = new Audio(); 
-=======
 //create instances of JS inbuilt Audio class
 let audio1 = new Audio();
->>>>>>> origin/glitch
 let audio2 = new Audio();
 let audio3 = new Audio();
 let audio4 = new Audio();
@@ -69,11 +59,6 @@ const audioMap = {
   8: audio8,
 };
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/glitch
 //********************************************************** */
 function startGame() {
   //initialize game variables
@@ -92,13 +77,6 @@ function startGame() {
   //determine which pattern to use
   pattern = [];
   createPattern();
-  
-  
-  if(timeIt){
-    time=3;
-    countDown.innerHTML = `${time}`;
-    document.getElementById("timer").classList.remove("hidden")
-  }
 
   if (timeIt) {
     time = 3;
@@ -134,12 +112,7 @@ function stopGame() {
   document.getElementById("Life1").style.display = "inline";
   document.getElementById("timer").classList.add("hidden");
   document.getElementById("Life2").style.display = "inline";
-<<<<<<< HEAD
-  if(timeIt){
-
-=======
   if (timeIt) {
->>>>>>> origin/glitch
     configureInterval(false);
   }
 }
@@ -187,18 +160,12 @@ function playClueSequence() {
       clueHoldTime -= 50;
     }
   }
-<<<<<<< HEAD
-  //wait until clues are played back and then begins countdown 
-=======
   //wait until clues are played back and then begins countdown
->>>>>>> origin/glitch
   if (timeIt) {
     time = 3;
     setTimeout(configureInterval, delay, true);
   }
 }
-
-
 
 function guess(btn) {
   if (!gamePlaying) {
@@ -219,18 +186,12 @@ function guess(btn) {
       } else {
         //Pattern correct. Add next segment
         progress++;
-<<<<<<< HEAD
-        if (timeIt){
-=======
         if (timeIt) {
->>>>>>> origin/glitch
           configureInterval(false);
           time = 3;
           countDown.innerHTML = `${time}`;
         }
         playClueSequence();
-        
-        
       }
     } else {
       //so far so good... check the next guess
@@ -240,10 +201,6 @@ function guess(btn) {
     //Guess was incorrect
     if (mistakeCounter != 2) {
       loseALife();
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/glitch
     } else loseGame();
   }
 }
@@ -254,20 +211,10 @@ function loseALife() {
   document.getElementById(currentLives).style.display = "none";
 }
 
-<<<<<<< HEAD
-
-function configureInterval(turnOn) {
-  if (turnOn){
-    myInterval = setInterval(turnOnCountdown, 1000);
-  }
-  else {
-    
-=======
 function configureInterval(turnOn) {
   if (turnOn) {
     myInterval = setInterval(turnOnCountdown, 1000);
   } else {
->>>>>>> origin/glitch
     clearInterval(myInterval);
   }
 }
@@ -276,22 +223,6 @@ function configureInterval(turnOn) {
 
 //timer configuration
 function turnOnCountdown() {
-<<<<<<< HEAD
-  
-  //creates a timer and updates the html element showing this timer.
-  countDown.innerHTML = `${time}`;
-  time--;
-  
-  //user loses a life and timer is reset
-  if(time == -1) {
-    if (mistakeCounter != 2){
-      time=3;  
-      loseALife();
-    } else {
-      document.getElementById("timer").classList.toggle('hidden');
-      configureInterval(false);
-      if(gamePlaying){
-=======
   //creates a timer and updates the html element showing this timer.
   countDown.innerHTML = `${time}`;
   time--;
@@ -305,18 +236,12 @@ function turnOnCountdown() {
       document.getElementById("timer").classList.toggle("hidden");
       configureInterval(false);
       if (gamePlaying) {
->>>>>>> origin/glitch
         loseGame();
       }
     }
   }
 }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/glitch
 //configure optional challenges
 function toggleChallenge(challenge) {
   let visual = document.getElementById("timeItUp").className;
@@ -333,18 +258,6 @@ function toggleChallenge(challenge) {
     speedIt = !speedIt;
   }
   if (challenge == "timeItUp") {
-<<<<<<< HEAD
-    
-    time = 3;
-
-    document.getElementById("timer").classList.toggle("hidden");
-    timeIt = !timeIt
-    
-    
-
-    //Catches an error. Needs refactoring for cleaner logic.
-    if(!timeIt && counter == "hidden" && visual != "hidden"){
-=======
     time = 3;
 
     document.getElementById("timer").classList.toggle("hidden");
@@ -352,7 +265,6 @@ function toggleChallenge(challenge) {
 
     //Catches an error. Needs refactoring for cleaner logic.
     if (!timeIt && counter == "hidden" && visual != "hidden") {
->>>>>>> origin/glitch
       document.getElementById("timer").classList.add("hidden");
       configureInterval(false);
     }
@@ -361,7 +273,6 @@ function toggleChallenge(challenge) {
   //hides or shows challenge message on the screen
   document.getElementById(challenge).classList.toggle("hidden");
 }
-
 
 // sound settings for the game butttons
 function playTone(btn, len) {
@@ -378,12 +289,7 @@ function startTone(btn) {
   if (!tonePlaying) {
     tonePlaying = true;
     startSound(btn);
-<<<<<<< HEAD
-  } 
-  
-=======
   }
->>>>>>> origin/glitch
 }
 function stopTone(btn) {
   tonePlaying = false;
@@ -393,8 +299,6 @@ function stopTone(btn) {
 function startSound(btn) {
   var buttonToPlay = audioMap[btn];
   buttonToPlay.play();
-<<<<<<< HEAD
-=======
 }
 
 function stopSound(btn) {
@@ -402,12 +306,10 @@ function stopSound(btn) {
 
   buttonToPause.pause();
   buttonToPause.currentTime = 0;
->>>>>>> origin/glitch
 }
 
-function stopSound(btn) {
-  var buttonToPause = audioMap[btn];
-
-  buttonToPause.pause();
-  buttonToPause.currentTime = 0;
+//configure the popUp
+function popUp() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
 }

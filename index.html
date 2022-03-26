@@ -3,7 +3,14 @@
   <head>
     <title>Space Brain!</title>
 
-    <!-- Import the webpage's stylesheet -->
+    <!-- Import the webpage's stylesheet and custom fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Genos:ital@1&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="/style.css" />
 
     <!-- Import the webpage's javascript file -->
@@ -17,20 +24,30 @@
       <div id="stars3"></div>
 
       <div class="content" role="main">
-        <h1 class="title">Welcome to <b>Brain Space!</b><br /></h1>
+        <h1 class="title">Welcome to <b>Brain Space!</b></h1>
+        <h2 class="options">
+          Please pick from the options <strong>below</strong>
+        </h2>
 
-        <h2>Please pick from the options <strong>below</strong></h2>
-
-        <p>Bonuses Activated:</p>
-        <p class="hidden" id="doubleItUp">Double it up!<br /></p>
-        <p class="hidden" id="speedItUp">Gotta go fast!<br /></p>
-        <p class="hidden" id="timeItUp">Running out of time!</p>
-<<<<<<< HEAD
-
-
-        
-=======
->>>>>>> origin/glitch
+        <!-- These toggle bonuses to the game -->
+        <div id="bonusButtonsArea">
+          <button id="doubleItButton" onclick="toggleChallenge('doubleItUp')">
+            Double it!
+          </button>
+          <button id="speedItButton" onclick="toggleChallenge('speedItUp')">
+            Speed it!
+          </button>
+          <button id="timeItButton" onclick="toggleChallenge('timeItUp')">
+            Time it!
+          </button>
+          <p><br /></p>
+        </div>
+        <div id="challengeMessages">
+          <p>Challenges Activated:</p>
+          <p class="hidden" id="doubleItUp">Double it up!<br /></p>
+          <p class="hidden" id="speedItUp">Gotta go fast!<br /></p>
+          <p class="hidden" id="timeItUp">Running out of time!</p>
+        </div>
 
         <button id="startBtn" onclick="startGame()">Start</button>
         <button id="stopBtn" class="hidden" onclick="stopGame()">Stop</button>
@@ -42,11 +59,7 @@
           <p id="Life3">X</p>
         </div>
 
-<<<<<<< HEAD
-        <div class ="hidden" id="timer"></div>
-=======
         <div class="hidden" id="timer"></div>
->>>>>>> origin/glitch
 
         <!-- These are the four main game buttons -->
         <div id="gameButtonArea">
@@ -74,6 +87,7 @@
             onmousedown="startTone(4)"
             onmouseup="stopTone(4)"
           ></button>
+          <br />
           <button
             id="button5"
             class="hidden"
@@ -103,20 +117,21 @@
             onmouseup="stopTone(8)"
           ></button>
         </div>
-        <!-- These toggle bonuses to the game -->
-        <div id="bonusButtonsArea">
-          <button id="doubleItButton" onclick="toggleChallenge('doubleItUp')">
-            Double it!
-          </button>
-          <button id="speedItButton" onclick="toggleChallenge('speedItUp')">
-            Speed it!
-          </button>
-          <button id="timeItButton" onclick="toggleChallenge('timeItUp')">
-            Time it!
-          </button>
+
+        <!-- This configures the popup explanation of the challenges -->
+        <div class="popup" onclick="popUp()">
+          <br />Click me for an explanation of each challenge!
+          <span class="popuptext" id="myPopup">
+            <b>Double It : </b><br />Two times the buttons, two times the
+            levels, and two times the fun! <br />
+            -------------<br />
+            <b>Speed It : </b><br />Clue playbacks speed up the farther you get
+            into the game!<br />
+            -------------<br />
+            <b>Time It : </b><br />3 second timer! You snooze, you lose!
+            (Experimental)<br />
+          </span>
         </div>
-        
-        
       </div>
     </div>
   </body>
