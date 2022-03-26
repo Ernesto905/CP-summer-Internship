@@ -40,7 +40,7 @@ The following **additional** features are implemented:
 - [X] Added a custom background animation (floating stars) 
 - [X] Custom cursor replaced original one (dark/white rocket) 
 - [X] Custom fonts
-- [X] Custom explanation of each challenge offered through a popup
+- [X] An explanation of each challenge is offered through a popup at the bottom of the screen
 
 ## Video Walkthrough (GIF)
 
@@ -102,7 +102,7 @@ Finally, I would allow for more user customizability of the visual experience. I
 
 ## Interview Recording URL Link
 
-[My 5-minute Interview Recording](your-link-here)
+[My 5-minute Interview Recording](https://youtu.be/XncjjIufU6g)
 
 
 ## License
