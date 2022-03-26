@@ -102,7 +102,7 @@ Finally, I would allow for more user customizability of the visual experience. I
 
 ## Interview Recording URL Link
 
-[My 5-minute Interview Recording](https://youtu.be/XncjjIufU6g)
+[My 5-minute Interview Recording](https://youtu.be/lMfM2sxH7yE)
 
 
 ## License
