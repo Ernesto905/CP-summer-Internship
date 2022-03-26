@@ -4,7 +4,7 @@
 
 Submitted by: **Ernesto Enriquez**
 
-Time spent: **19** hours spent in total
+Time spent: **23** hours spent in total
 
 Link to project: 
 https://glitch.com/edit/#!/im-pickle-rick <br>
